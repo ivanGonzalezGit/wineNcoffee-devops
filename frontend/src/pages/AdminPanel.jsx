@@ -3,7 +3,7 @@ import AdminUsers from "../components/AdminUsers.jsx";
 import AdminProducts from "../components/AdminProducts.jsx";
 import AdminCharts from "../components/AdminCharts.jsx";
 // import api from "../services/api"; // Descomenta si usas tu instancia de axios 'api'
-import "./AdminPanel.css";
+import "./adminPanel.css";
 
 function AdminPanel() {
   const [tab, setTab] = useState("charts");
