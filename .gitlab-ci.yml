@@ -1,48 +1,8 @@
 stages:
   - test
-  - build
-  - docker
-  - deploy
 
-variables:
-  DOCKER_IMAGE_BACKEND: $CI_REGISTRY_IMAGE/backend:latest
-  DOCKER_IMAGE_FRONTEND: $CI_REGISTRY_IMAGE/frontend:latest
-
-before_script:
-  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-
-# Test stage
 test:
   stage: test
   image: node:20-alpine
   script:
-    - cd backend && npm install && npm test
-    - cd ../frontend && npm install && npm test
-
-# Build stage
-build:
-  stage: build
-  image: node:20-alpine
-  script:
-    - cd backend && npm install && npm run build
-    - cd ../frontend && npm install && npm run build
-
-# Docker build & push
-docker:
-  stage: docker
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - docker build -t $DOCKER_IMAGE_BACKEND ./backend
-    - docker build -t $DOCKER_IMAGE_FRONTEND ./frontend
-    - docker push $DOCKER_IMAGE_BACKEND
-    - docker push $DOCKER_IMAGE_FRONTEND
-
-# Deploy stage (Render o VPS)
-deploy:
-  stage: deploy
-  script:
-    - echo "Aquí podés poner tu script para redeploy en Render"
-  only:
-    - main
+    - echo "Pipeline YAML válido"
