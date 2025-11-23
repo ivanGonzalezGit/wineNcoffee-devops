@@ -1,8 +1,16 @@
 stages:
   - test
+  - build
 
 test:
   stage: test
   image: node:20-alpine
   script:
     - echo "Pipeline YAML válido"
+
+build:
+  stage: build
+  image: node:20-alpine
+  script:
+    - cd backend && npm install
+    - cd ../frontend && npm install && npm run build
