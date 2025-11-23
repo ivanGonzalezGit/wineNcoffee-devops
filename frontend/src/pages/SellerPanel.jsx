@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AdminProducts from "../components/AdminProducts.jsx";
 import SellerOrders from "../components/SellerOrders.jsx";
-import "./SellerPanel.css";
+import "./sellerPanel.css";
 
 export default function SellerPanel() {
   const [tab, setTab] = useState("orders");
