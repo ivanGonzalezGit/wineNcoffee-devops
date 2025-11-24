@@ -26,6 +26,6 @@ dist-ssr
 *.sw?
 
 # Env
-.env
-.env.local
-.env.*.local
+#.env
+#.env.local
+#.env.*.local
