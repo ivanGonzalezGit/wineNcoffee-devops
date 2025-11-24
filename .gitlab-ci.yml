@@ -2,6 +2,7 @@ stages:
   - test
   - build
   - docker
+  - deploy
 
 test:
   stage: test
@@ -32,3 +33,13 @@ docker:
     # Push al registry
     - docker push $CI_REGISTRY_IMAGE/backend:latest
     - docker push $CI_REGISTRY_IMAGE/frontend:latest
+
+deploy:
+  stage: deploy
+  image: curlimages/curl:latest
+  script:
+    - echo "Deploy a Render"
+    - curl -X POST https://api.render.com/deploy/$RENDER_SERVICE_ID \
+        -H "Authorization: Bearer $RENDER_API_KEY"
+  only:
+    - main
