@@ -47,8 +47,8 @@ export default function SellerPanel() {
 
         <section className="seller-main__content">
           <div className="seller-card">
-            {tab === "orders" && <SellerOrders />}
-            {tab === "products" && <AdminProducts />}
+            {tab === "orders" && <SellerOrders apiInstance={true} />}
+            {tab === "products" && <AdminProducts apiInstance={true} />}
           </div>
         </section>
       </main>
