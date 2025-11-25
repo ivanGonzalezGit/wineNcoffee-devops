@@ -19,9 +19,16 @@ export default function Login() {
         password: pass,
       });
 
+      if (!data || !data.token || !data.role) {
+        setErr("Credenciales inválidas");
+        return;
+      }
+
+      // Guardar token y rol en localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
 
+      // Navegar según rol
       if (data.role === "admin") return nav("/admin");
       if (data.role === "seller") return nav("/seller");
       return nav("/");
@@ -32,7 +39,10 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container" style={{ textAlign: "center", padding: "2rem" }}>
+    <div
+      className="login-container"
+      style={{ textAlign: "center", padding: "2rem" }}
+    >
       <img
         src="/img-inicio.jpg"
         alt="Wine & Coffee"
@@ -59,7 +69,10 @@ export default function Login() {
         {err && <small style={{ color: "crimson" }}>{err}</small>}
       </form>
 
-      <button onClick={() => nav("/register")} style={{ marginTop: 10 }}>
+      <button
+        onClick={() => nav("/register")}
+        style={{ marginTop: 10 }}
+      >
         Registrarse
       </button>
     </div>

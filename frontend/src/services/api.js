@@ -1,20 +1,16 @@
+// frontend/src/services/api.js
 import axios from "axios";
-//para rutas que usan api
-//const api = axios.create({
-//  baseURL: "http://localhost:5000/api" //ruta vieja no se si se usa pero la dejamos
-//});
 
-//para rutas directas al backend por ejemplo metrics
+// Crear instancia de Axios usando variable de entorno de Vite
 const api = axios.create({
-  baseURL: "http://localhost:3000" //backend por defecto
+  baseURL: import.meta.env.VITE_API_URL, // usa localhost en dev, backend de Render en producción
 });
 
 // Adjuntar token si existe
 api.interceptors.request.use((config) => {
-  const t = localStorage.getItem("token");
-  if (t) config.headers.Authorization = `Bearer ${t}`;
+  const token = localStorage.getItem("token");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
-
 
 export default api;
