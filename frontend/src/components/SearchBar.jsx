@@ -86,10 +86,11 @@ function SearchBar() {
                   src={
                     item.thumbnail?.startsWith("http")
                       ? item.thumbnail
-                      : `http://localhost:3000/${item.thumbnail}`
+                      : `${import.meta.env.VITE_API_URL}/thumbnails/${item.thumbnail}`
                   }
                   alt={item.name}
                 />
+
                 <span>{item.name}</span>
               </li>
             ))}
